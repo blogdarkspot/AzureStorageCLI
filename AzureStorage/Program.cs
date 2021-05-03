@@ -124,24 +124,5 @@ namespace AzureStorageProgram
                } 
             }
         }
-
-        static async Task test()
-        {
-            AzureStorage azure = new AzureStorage();
-            azure.connString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
-            azure.Init();
-            azure.OpenContainer("containertest");
-
-            var itensTaks = azure.GetBlobNamesAsync();
-            var itens = await itensTaks;
-
-            foreach (string item in itens)
-            {
-                Console.WriteLine(item);
-            }
-
-            var uploadTask = azure.UploadBlobAsync("template.json", "/data/files");
-            await uploadTask;
-        }
     }
 }
